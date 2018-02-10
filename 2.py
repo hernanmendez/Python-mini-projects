@@ -1,6 +1,5 @@
 from random import randint
-from functions import yes_no
-from re import match
+from functions import yes_no, choosingInt
 
 print('Welcome to the guess the number game')
 
@@ -21,24 +20,13 @@ def difference(num, guessedNum):
   else:
     print(f'The number is a little bit {msg}')
 
-def isInt(string):
-  return True if match('^\d+$', string) else False
-
-def choosing(inputStr):
-  while True:
-    string = input(inputStr)
-    if isInt(string):
-      return int(string)
-    else:
-      print('Sorry I think what you typed wasn\'t a number')
-
 if yes_no('Would you like to play?', [ 'Ok let\'s begin', 'Please come back and play!' ]):
   playing = True
   while playing:
     choosingNum = True
     while choosingNum:
-      lowNum = choosing('Enter the lowest number you want to appear: ')
-      highNum = choosing('Enter the highest number you want to apper: ')
+      lowNum = choosingInt('Enter the lowest number you want to appear: ')
+      highNum = choosingInt('Enter the highest number you want to apper: ')
       if lowNum > highNum:
         print('The lowest number cannot be higher than the highest number')
       else:
@@ -50,7 +38,7 @@ if yes_no('Would you like to play?', [ 'Ok let\'s begin', 'Please come back and 
       print('Random number generated')
       guessing = True
       while guessing:
-        guessedNum = choosing('What do you think the number is?: ')
+        guessedNum = choosingInt('What do you think the number is?: ')
         if guessedNum == genNum:
           print('HOORAY you guessed correctly')
           guessing = False

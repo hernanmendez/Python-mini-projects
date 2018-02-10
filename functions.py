@@ -1,3 +1,5 @@
+from re import match
+
 def yes_no(question = 'Yes or no?', answers = []):
   processed = False
   yes = False
@@ -18,3 +20,11 @@ def yes_no(question = 'Yes or no?', answers = []):
     else:
       print('sorry I didn\'t understand')
   return yes
+
+def choosingInt(inputStr):
+  while True:
+    string = input(inputStr)
+    if (True if match('^\d+$', string) else False):
+      return int(string)
+    else:
+      print('Sorry I think what you typed wasn\'t a number')
